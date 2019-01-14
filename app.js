@@ -30,10 +30,22 @@ class Die {
                 this.div.text(this.value);
             })
         })
+
+        this.div.dblclick(() => {
+            this.removeDie();
+        })
     }
 
     roll() {
         this.value = Math.floor((Math.random() * 6) + 1);
+    }
+
+    removeDie() {
+        this.div.remove();
+        let index = dieArray.indexOf(this);
+        if (index !== -1) {
+            dieArray.splice(index, 1);
+        }
     }
 }
 
@@ -46,7 +58,7 @@ $(`#generateBtn`).click(() => {
 $(`#sumDice`).click(() => {
     let result = sumDice(dieArray);
     alert(result);
-})
+});
 
 let sumDice = (arr) => {
     let sum = 0;
